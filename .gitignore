@@ -1,0 +1,22 @@
+# Secretos y configuraciones locales (NUNCA subir a Git)
+.env
+*.env
+!.env.example
+token.json
+credentials.json
+client_secret*.json
+
+# Entornos y caché de Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Salidas locales de ejecuciones, capturas y descargas temporales
+output/
+artifacts/
+*.log

@@ -1,0 +1,37 @@
+name: Computer Use & Automation CI
+
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install system X11 & browser dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xvfb xdotool scrot x11-utils poppler-utils
+
+      - name: Install Python dependencies & Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Run automated pytest suite
+        env:
+          CHROME_EXECUTABLE_PATH: ""
+        run: |
+          pytest tests/ -v

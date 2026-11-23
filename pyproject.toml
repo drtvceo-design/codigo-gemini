@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drtapia-computer-use"
+version = "1.0.0"
+description = "Motor de Computer Use (Chrome + Playwright + Xvfb + Gemini 2.5), Automatización de Portales, Sincronización Documental GDrive y Puente Zapier MCP/Webhooks"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["."]
